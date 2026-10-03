@@ -12,7 +12,7 @@ run of 26 straight years from 2000 to 2025 above that average.
 
 NOAA NCEI Climate at a Glance, contiguous United States average temperature
 (region 110, parameter `tavg`), read at deploy time through
-`@us-lab/usa-sources` (`nceiAnnualTemperatureAdapter`).
+`@usa-open-data-connectors/usa-sources` (`nceiAnnualTemperatureAdapter`).
 
 Four things about the download shape the story:
 

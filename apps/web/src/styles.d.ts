@@ -1,1 +1,1 @@
-declare module '@us-lab/ui/styles';
+declare module '@usa-open-data-lab/ui/styles';

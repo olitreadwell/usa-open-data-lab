@@ -13,7 +13,7 @@ reprices at today's rates.
 
 US Treasury Fiscal Data, the Average Interest Rates on U.S. Treasury
 Securities dataset (`v2/accounting/od/avg_interest_rates`), read at deploy
-time through `@us-lab/usa-sources` (`treasuryAvgInterestRateAdapter`).
+time through `@usa-open-data-connectors/usa-sources` (`treasuryAvgInterestRateAdapter`).
 
 Four things about the dataset shape the story:
 

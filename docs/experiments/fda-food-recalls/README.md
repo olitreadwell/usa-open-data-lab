@@ -11,7 +11,7 @@ at 3,203, and 2026 stands at 1,007 so far.
 ## Data source
 
 openFDA food enforcement reports (`api.fda.gov/food/enforcement.json`), read
-at deploy time through `@us-lab/usa-sources` (`openFdaFoodRecallsAdapter`).
+at deploy time through `@usa-open-data-connectors/usa-sources` (`openFdaFoodRecallsAdapter`).
 
 Four things about the endpoint shape the story:
 

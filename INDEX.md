@@ -4,7 +4,7 @@ A map of this repo for anyone (or any agent) arriving cold.
 
 ## The site
 
-`usa-data-lab` is a static Next.js export of small experiments on US public
+`usa-open-data-lab` is a static Next.js export of small experiments on US public
 data. Three microsites are published. The home page is
 (`apps/web/src/app/page.tsx`), and each story lives at
 `/<category-slug>/<slug>/`.

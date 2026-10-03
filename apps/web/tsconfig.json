@@ -1,5 +1,5 @@
 {
-  "extends": "@us-lab/config-typescript/nextjs.json",
+  "extends": "@usa-open-data-lab/config-typescript/nextjs.json",
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"]

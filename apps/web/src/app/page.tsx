@@ -1,4 +1,4 @@
-import { Container, Stack } from '@us-lab/ui';
+import { Container, Stack } from '@usa-open-data-lab/ui';
 
 import { MicrositeGallery } from '@/components/MicrositeGallery';
 import type { MicrositeGalleryCard } from '@/components/MicrositeGallery';

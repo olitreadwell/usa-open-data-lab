@@ -1,4 +1,4 @@
-# usa-data-lab
+# usa-open-data-lab
 
 Small experiments digging through US public data (Bureau of Labor Statistics,
 Census, USGS, and whatever else turns up something weird, funny, or
@@ -27,9 +27,9 @@ See `AGENTS.md` for global agent rules and quality gates.
 
 ## Package structure
 
-- `apps/web` — Next.js app (`@us-lab/web`)
+- `apps/web` — Next.js app (`@usa-open-data-lab/web`)
 - `packages/ui` — Shared layout primitives + canonical `Button` + shadcn/ui scaffold +
-  style system (`@us-lab/ui`)
+  style system (`@usa-open-data-lab/ui`)
 - `packages/config-typescript` — Shared TypeScript configs
 - `packages/config-eslint` — Shared ESLint configs (flat config, ESLint 9)
 - `packages/config-tailwind` — Shared Tailwind theme + design tokens
@@ -99,10 +99,10 @@ see the comment atop `packages/ui/src/components/ui/button.tsx` for why a shadcn
 - **`_typography.scss`** — `.numeral-heading-*`, `.numeral-paragraph-*`,
   `.numeral-text-*` classes
 
-## What's in `@us-lab/ui`
+## What's in `@usa-open-data-lab/ui`
 
 ```ts
-import { Box, Button, cn, Container, Flex, Grid, HStack, Section, Stack, VStack } from '@us-lab/ui';
+import { Box, Button, cn, Container, Flex, Grid, HStack, Section, Stack, VStack } from '@usa-open-data-lab/ui';
 ```
 
 That's the public surface. We don't pre-ship dialogs, dropdowns, tables, etc as public

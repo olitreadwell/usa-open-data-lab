@@ -1,6 +1,6 @@
 # Build a product recall chart from the CPSC's open file
 
-This walks through one experiment in `usa-data-lab`, from the public data
+This walks through one experiment in `usa-open-data-lab`, from the public data
 source to a published page. It is written for someone who wants to do the
 same thing with a different agency, a different year range, or a different
 product category.
@@ -107,7 +107,7 @@ A few things about the shape:
 
 7. **Vendor it into the site.** `node scripts/sync-connectors.mjs --from
    ../usa-open-data-connectors` copies the package in, renames its scope to
-   `@us-lab`, and drops the `.js` import extensions. Never edit the vendored
+   `@usa-open-data-lab`, and drops the `.js` import extensions. Never edit the vendored
    copy by hand.
 
 8. **Turn the counts into the story's numbers.** In the site,

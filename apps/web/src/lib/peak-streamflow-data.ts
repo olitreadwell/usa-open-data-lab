@@ -3,8 +3,11 @@ import {
   buildUsgsPeakStreamflowUrl,
   parseUsgsPeakStreamflowPayload,
   UsSourceError,
-} from '@us-lab/usa-sources';
-import type { UsgsPeakStreamflowSeries, UsgsPeakStreamflowYear } from '@us-lab/usa-sources';
+} from '@usa-open-data-connectors/usa-sources';
+import type {
+  UsgsPeakStreamflowSeries,
+  UsgsPeakStreamflowYear,
+} from '@usa-open-data-connectors/usa-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 

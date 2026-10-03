@@ -11,7 +11,7 @@ between 2010 and 2025.
 ## Data source
 
 NOAA CO-OPS Tides and Currents, the `monthly_mean` product for station
-8518750 (The Battery), read at deploy time through `@us-lab/usa-sources`
+8518750 (The Battery), read at deploy time through `@usa-open-data-connectors/usa-sources`
 (`noaaSeaLevelAdapter`).
 
 Four things about the product shape the story:

@@ -1,4 +1,7 @@
-import { buildNoaaSeaLevelSeries, parseNoaaSeaLevelPayload } from '@us-lab/usa-sources';
+import {
+  buildNoaaSeaLevelSeries,
+  parseNoaaSeaLevelPayload,
+} from '@usa-open-data-connectors/usa-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it, vi } from 'vitest';

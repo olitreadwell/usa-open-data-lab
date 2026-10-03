@@ -9,7 +9,9 @@ expect.extend(toHaveNoViolations);
 describe('AboutPage', () => {
   it('explains what the site is and where the data comes from', () => {
     render(<AboutPage />);
-    expect(screen.getByRole('heading', { level: 1, name: 'About usa-data-lab' })).toBeVisible();
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'About usa-open-data-lab' }),
+    ).toBeVisible();
     expect(screen.getByText(/peaked at 14.8 percent in April 2020/)).toBeVisible();
     expect(screen.getByText(/Bureau of Labor Statistics public data API/)).toBeVisible();
     expect(screen.getByRole('link', { name: 'usa-open-data-connectors' })).toHaveAttribute(
@@ -22,7 +24,7 @@ describe('AboutPage', () => {
     );
     expect(screen.getByRole('link', { name: 'GitHub' })).toHaveAttribute(
       'href',
-      'https://github.com/olitreadwell/usa-data-lab',
+      'https://github.com/olitreadwell/usa-open-data-lab',
     );
   });
 

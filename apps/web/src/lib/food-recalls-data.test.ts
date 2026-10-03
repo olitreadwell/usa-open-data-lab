@@ -1,5 +1,8 @@
-import { buildOpenFdaFoodRecallSummary, parseOpenFdaFoodRecallSnapshot } from '@us-lab/usa-sources';
-import type { OpenFdaFoodRecallYear } from '@us-lab/usa-sources';
+import {
+  buildOpenFdaFoodRecallSummary,
+  parseOpenFdaFoodRecallSnapshot,
+} from '@usa-open-data-connectors/usa-sources';
+import type { OpenFdaFoodRecallYear } from '@usa-open-data-connectors/usa-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';

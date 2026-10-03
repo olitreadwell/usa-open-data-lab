@@ -15,7 +15,7 @@ Read the step-by-step writeup in [TUTORIAL.md](TUTORIAL.md).
 
 SaferProducts.gov recall service
 (`https://www.saferproducts.gov/RestWebServices/Recall`), read at deploy time
-through `@us-lab/usa-sources` (`cpscProductRecallsAdapter`).
+through `@usa-open-data-connectors/usa-sources` (`cpscProductRecallsAdapter`).
 
 Four things about the file shape the story:
 

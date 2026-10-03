@@ -1,4 +1,7 @@
-import { buildUsgsEarthquakeCatalogue, parseUsgsEarthquakes } from '@us-lab/usa-sources';
+import {
+  buildUsgsEarthquakeCatalogue,
+  parseUsgsEarthquakes,
+} from '@usa-open-data-connectors/usa-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';

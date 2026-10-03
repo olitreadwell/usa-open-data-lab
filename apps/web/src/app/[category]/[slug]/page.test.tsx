@@ -450,10 +450,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('fda-food-recalls')) }),
     ).resolves.toEqual({
-      title: 'FDA food recalls - usa-data-lab',
+      title: 'FDA food recalls - usa-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'FDA food recalls - usa-data-lab',
+        title: 'FDA food recalls - usa-open-data-lab',
         description: expect.any(String),
         url: '/agriculture/fda-food-recalls/',
         type: 'article',
@@ -507,10 +507,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('jobless-rate')) }),
     ).resolves.toEqual({
-      title: 'Jobless rate - usa-data-lab',
+      title: 'Jobless rate - usa-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Jobless rate - usa-data-lab',
+        title: 'Jobless rate - usa-open-data-lab',
         description: expect.any(String),
         url: '/economy/jobless-rate/',
         type: 'article',
@@ -521,7 +521,7 @@ describe('MicrositePage', () => {
   it('returns a generic title for an unknown microsite', async () => {
     await expect(generateMetadata({ params: Promise.resolve(paramsFor('nope')) })).resolves.toEqual(
       {
-        title: 'usa-data-lab',
+        title: 'usa-open-data-lab',
       },
     );
   });
@@ -545,10 +545,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('hawaii-quakes')) }),
     ).resolves.toEqual({
-      title: 'Hawaii earthquakes - usa-data-lab',
+      title: 'Hawaii earthquakes - usa-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Hawaii earthquakes - usa-data-lab',
+        title: 'Hawaii earthquakes - usa-open-data-lab',
         description: expect.any(String),
         url: '/environment/hawaii-quakes/',
         type: 'article',
@@ -575,10 +575,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('cdc-county-obesity')) }),
     ).resolves.toEqual({
-      title: 'County obesity - usa-data-lab',
+      title: 'County obesity - usa-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'County obesity - usa-data-lab',
+        title: 'County obesity - usa-open-data-lab',
         description: expect.any(String),
         url: '/health/cdc-county-obesity/',
         type: 'article',
@@ -604,10 +604,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('us-temperature-record')) }),
     ).resolves.toEqual({
-      title: 'US temperature record - usa-data-lab',
+      title: 'US temperature record - usa-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'US temperature record - usa-data-lab',
+        title: 'US temperature record - usa-open-data-lab',
         description: expect.any(String),
         url: '/energy/us-temperature-record/',
         type: 'article',
@@ -634,10 +634,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('battery-sea-level')) }),
     ).resolves.toEqual({
-      title: 'Battery sea level - usa-data-lab',
+      title: 'Battery sea level - usa-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Battery sea level - usa-data-lab',
+        title: 'Battery sea level - usa-open-data-lab',
         description: expect.any(String),
         url: '/environment/battery-sea-level/',
         type: 'article',
@@ -684,10 +684,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('fema-disaster-declarations')) }),
     ).resolves.toEqual({
-      title: 'FEMA declarations - usa-data-lab',
+      title: 'FEMA declarations - usa-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'FEMA declarations - usa-data-lab',
+        title: 'FEMA declarations - usa-open-data-lab',
         description: expect.any(String),
         url: '/society/fema-disaster-declarations/',
         type: 'article',
@@ -737,10 +737,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('cpsc-product-recalls')) }),
     ).resolves.toEqual({
-      title: 'Product recalls - usa-data-lab',
+      title: 'Product recalls - usa-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Product recalls - usa-data-lab',
+        title: 'Product recalls - usa-open-data-lab',
         description: expect.any(String),
         url: '/society/cpsc-product-recalls/',
         type: 'article',
@@ -774,10 +774,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('cfpb-consumer-complaints')) }),
     ).resolves.toEqual({
-      title: 'Consumer complaints - usa-data-lab',
+      title: 'Consumer complaints - usa-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Consumer complaints - usa-data-lab',
+        title: 'Consumer complaints - usa-open-data-lab',
         description: expect.any(String),
         url: '/economy/cfpb-consumer-complaints/',
         type: 'article',
@@ -789,10 +789,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('mississippi-peak-flow')) }),
     ).resolves.toEqual({
-      title: 'Mississippi peak flow - usa-data-lab',
+      title: 'Mississippi peak flow - usa-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Mississippi peak flow - usa-data-lab',
+        title: 'Mississippi peak flow - usa-open-data-lab',
         description: expect.any(String),
         url: '/environment/mississippi-peak-flow/',
         type: 'article',
@@ -804,10 +804,10 @@ describe('MicrositePage', () => {
     await expect(
       generateMetadata({ params: Promise.resolve(paramsFor('treasury-interest-rate')) }),
     ).resolves.toEqual({
-      title: 'Treasury interest rate - usa-data-lab',
+      title: 'Treasury interest rate - usa-open-data-lab',
       description: expect.any(String),
       openGraph: {
-        title: 'Treasury interest rate - usa-data-lab',
+        title: 'Treasury interest rate - usa-open-data-lab',
         description: expect.any(String),
         url: '/economy/treasury-interest-rate/',
         type: 'article',

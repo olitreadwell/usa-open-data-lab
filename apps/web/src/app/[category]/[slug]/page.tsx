@@ -1,4 +1,4 @@
-import { Container } from '@us-lab/ui';
+import { Container } from '@usa-open-data-lab/ui';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -76,14 +76,14 @@ export async function generateMetadata({ params }: MicrositePageProps): Promise<
   const { category, slug } = await params;
   const microsite = MICROSITES.find((candidate) => candidate.slug === slug);
   if (microsite === undefined || categorySlugFor(microsite) !== category) {
-    return { title: 'usa-data-lab' };
+    return { title: 'usa-open-data-lab' };
   }
   const path = micrositePathFor(microsite);
   return {
-    title: `${microsite.label} - usa-data-lab`,
+    title: `${microsite.label} - usa-open-data-lab`,
     description: microsite.description,
     openGraph: {
-      title: `${microsite.label} - usa-data-lab`,
+      title: `${microsite.label} - usa-open-data-lab`,
       description: microsite.description,
       url: path,
       type: 'article',

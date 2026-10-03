@@ -1,5 +1,8 @@
-import { buildCdcCountyObesitySet, parseCdcCountyObesityPayload } from '@us-lab/usa-sources';
-import type { CdcCountyObesityEstimate } from '@us-lab/usa-sources';
+import {
+  buildCdcCountyObesitySet,
+  parseCdcCountyObesityPayload,
+} from '@usa-open-data-connectors/usa-sources';
+import type { CdcCountyObesityEstimate } from '@usa-open-data-connectors/usa-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';

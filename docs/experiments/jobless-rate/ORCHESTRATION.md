@@ -1,10 +1,10 @@
 # ORCHESTRATION.md — jobless-rate
 
-Built 2026-09-23 to prove out `@us-lab/usa-sources` end to end.
+Built 2026-09-23 to prove out `@usa-open-data-connectors/usa-sources` end to end.
 
 - TDD: the adapter tests were written before the adapter, and the transform
   tests (`buildJoblessSeries`, `monthLabel`) before the chart.
-- Live smoke test run explicitly: `RUN_SMOKE=1 npm run test:smoke -w @us-lab/usa-sources`.
+- Live smoke test run explicitly: `RUN_SMOKE=1 npm run test:smoke -w @usa-open-data-connectors/usa-sources`.
 - Two real findings came out of running the parser against the live API:
   the agency answers newest first rather than oldest first, and it marks an
   unpublished month with a dash instead of omitting the row. Both are now

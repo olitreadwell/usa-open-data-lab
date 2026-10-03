@@ -2,7 +2,7 @@ import {
   buildBlsSeries,
   parseBlsObservations,
   US_UNEMPLOYMENT_SERIES_ID,
-} from '@us-lab/usa-sources';
+} from '@usa-open-data-connectors/usa-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';

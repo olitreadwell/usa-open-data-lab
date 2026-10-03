@@ -20,7 +20,7 @@ Read the step-by-step writeup in [TUTORIAL.md](TUTORIAL.md).
 
 The Consumer Complaint Database search API
 (`https://www.consumerfinance.gov/data-research/consumer-complaints/search/api/v1/`),
-read at deploy time through `@us-lab/usa-sources`
+read at deploy time through `@usa-open-data-connectors/usa-sources`
 (`cfpbConsumerComplaintsAdapter`).
 
 Four things about the API shape the story:

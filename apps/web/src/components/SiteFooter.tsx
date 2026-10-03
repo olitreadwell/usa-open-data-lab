@@ -4,7 +4,7 @@ export function SiteFooter(): React.ReactElement {
     <footer className="border-t border-[var(--color-border)]">
       <div className="mx-auto w-full max-w-[var(--layout-wide)] px-[var(--layout-outside-space)] py-6">
         <p className="numeral-paragraph-sm text-[var(--color-muted)]">
-          usa-data-lab: small experiments in US public data, with more experiments to come.
+          usa-open-data-lab: small experiments in US public data, with more experiments to come.
         </p>
       </div>
     </footer>

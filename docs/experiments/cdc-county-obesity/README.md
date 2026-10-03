@@ -12,7 +12,7 @@ the counties with the highest rates are the smallest ones.
 ## Data source
 
 CDC PLACES, county data, 2025 release, read at deploy time through
-`@us-lab/usa-sources` (`cdcCountyObesityAdapter`).
+`@usa-open-data-connectors/usa-sources` (`cdcCountyObesityAdapter`).
 
 Four things about the release shape the story:
 

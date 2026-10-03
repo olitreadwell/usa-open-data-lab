@@ -13,7 +13,7 @@ Read the step-by-step writeup in [TUTORIAL.md](TUTORIAL.md).
 ## Data source
 
 USGS Water Data OGC API, the `peaks` collection, read at deploy time through
-`@us-lab/usa-sources` (`usgsPeakStreamflowAdapter`).
+`@usa-open-data-connectors/usa-sources` (`usgsPeakStreamflowAdapter`).
 
 Four things about the record shape the story:
 

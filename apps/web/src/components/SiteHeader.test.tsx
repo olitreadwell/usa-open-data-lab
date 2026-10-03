@@ -9,7 +9,7 @@ expect.extend(toHaveNoViolations);
 describe('SiteHeader', () => {
   it('links home from the wordmark', () => {
     render(<SiteHeader />);
-    expect(screen.getByRole('link', { name: 'usa-data-lab' })).toHaveAttribute('href', '/');
+    expect(screen.getByRole('link', { name: 'usa-open-data-lab' })).toHaveAttribute('href', '/');
   });
 
   it('links to the about page', () => {

@@ -1,6 +1,6 @@
 @~/.claude/AGENTS.md
 
-# usa-data-lab
+# usa-open-data-lab
 
 Example site for `usa-open-data-connectors`: three microsites (the jobless
 rate, the Hawaii earthquakes, and adult obesity by county) showing the full
@@ -37,7 +37,7 @@ doc that disagrees)
 
 ## Conventions
 
-- Components: prefer `@us-lab/ui` first (`packages/ui/src/index.ts` is the export
+- Components: prefer `@usa-open-data-lab/ui` first (`packages/ui/src/index.ts` is the export
   surface). Canonical pattern is `packages/ui/src/components/Button.tsx` +
   `_button.scss` — copy it for new hybrid Tailwind/SCSS components.
 - New interactive primitive (dialog, dropdown, etc): `npx shadcn add <component>` run

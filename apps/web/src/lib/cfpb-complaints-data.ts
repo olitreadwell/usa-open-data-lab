@@ -2,8 +2,11 @@ import {
   fetchCfpConsumerComplaints,
   parseCfpComplaintSnapshot,
   UsSourceError,
-} from '@us-lab/usa-sources';
-import type { CfpComplaintYearCount, CfpConsumerComplaintSeries } from '@us-lab/usa-sources';
+} from '@usa-open-data-connectors/usa-sources';
+import type {
+  CfpComplaintYearCount,
+  CfpConsumerComplaintSeries,
+} from '@usa-open-data-connectors/usa-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 

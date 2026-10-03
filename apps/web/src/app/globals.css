@@ -1,11 +1,11 @@
 @import 'tailwindcss';
-@import '@us-lab/config-tailwind/tokens';
+@import '@usa-open-data-lab/config-tailwind/tokens';
 
 /*
  * Shared design tokens, including the shadcn/ui color system. Source of
  * truth lives in `packages/ui/src/tokens/tokens.css`.
  */
-@import '@us-lab/ui/tokens.css';
+@import '@usa-open-data-lab/ui/tokens.css';
 
 @custom-variant dark (&:where(.dark, .dark *));
 

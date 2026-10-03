@@ -5,8 +5,11 @@ import {
   USGS_HAWAII_BOUNDS,
   USGS_HAWAII_MIN_MAGNITUDE,
   UsSourceError,
-} from '@us-lab/usa-sources';
-import type { UsgsEarthquake, UsgsEarthquakeCatalogue } from '@us-lab/usa-sources';
+} from '@usa-open-data-connectors/usa-sources';
+import type {
+  UsgsEarthquake,
+  UsgsEarthquakeCatalogue,
+} from '@usa-open-data-connectors/usa-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 

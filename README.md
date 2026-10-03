@@ -1,4 +1,4 @@
-# usa-data-lab
+# usa-open-data-lab
 
 Example site for
 [usa-open-data-connectors](https://github.com/olitreadwell/usa-open-data-connectors).
@@ -35,7 +35,7 @@ a deployed static chart.
 ## What this example shows
 
 - `apps/web/src/lib/jobless-data.ts` calls `parseBlsObservations` from
-  `@us-lab/usa-sources` to read series `LNS14000000`, in two requests because
+  `@usa-open-data-connectors/usa-sources` to read series `LNS14000000`, in two requests because
   the API caps one request at ten years.
 - `apps/web/src/lib/hawaii-quakes-data.ts` calls `parseUsgsEarthquakes` for one
   closed year, drops the non-tectonic rows the catalogue mixes in, and counts
@@ -58,7 +58,7 @@ a deployed static chart.
 
 ## Connectors wiring
 
-The site uses one package from the connectors repo, `@us-lab/usa-sources`,
+The site uses one package from the connectors repo, `@usa-open-data-connectors/usa-sources`,
 vendored under `packages/usa-sources`. npm git dependencies cannot target a
 subpackage inside a workspace monorepo, so the package is copied here and kept
 in sync with a script:
@@ -69,7 +69,7 @@ node scripts/sync-connectors.mjs --from /path/to/repo
 ```
 
 The script renames whatever scope the connectors package ships under to
-`@us-lab`, strips the `.js` extension from relative imports, and points the
+`@usa-open-data-lab`, strips the `.js` extension from relative imports, and points the
 package entry at `src/`. All three happen in the script rather than by hand, so
 a sync is reproducible.
 

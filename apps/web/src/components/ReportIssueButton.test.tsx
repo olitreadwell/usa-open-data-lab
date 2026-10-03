@@ -6,7 +6,7 @@ import { ReportIssueButton } from './ReportIssueButton';
 
 expect.extend(toHaveNoViolations);
 
-const OPEN_URL = 'https://github.com/olitreadwell/usa-data-lab/issues/new';
+const OPEN_URL = 'https://github.com/olitreadwell/usa-open-data-lab/issues/new';
 
 afterEach(() => {
   vi.restoreAllMocks();

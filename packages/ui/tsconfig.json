@@ -1,5 +1,5 @@
 {
-  "extends": "@us-lab/config-typescript/library.json",
+  "extends": "@usa-open-data-lab/config-typescript/library.json",
   "compilerOptions": {
     "rootDir": ".",
     "paths": {

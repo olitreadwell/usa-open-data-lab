@@ -3,8 +3,8 @@ import {
   parseBlsObservations,
   US_UNEMPLOYMENT_SERIES_ID,
   UsSourceError,
-} from '@us-lab/usa-sources';
-import type { BlsObservation, BlsSeries } from '@us-lab/usa-sources';
+} from '@usa-open-data-connectors/usa-sources';
+import type { BlsObservation, BlsSeries } from '@usa-open-data-connectors/usa-sources';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
