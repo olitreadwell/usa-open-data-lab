@@ -48,7 +48,7 @@
     "@vitest/coverage-v8": "^3.0.0",
     "eslint": "^9.39.5",
     "jest-axe": "^9.0.0",
-    "postcss": "^8.5.2",
+    "postcss": "^8.5.28",
     "sass": "^1.86.0",
     "serve": "^14.2.6",
     "tailwindcss": "^4.3.3",
