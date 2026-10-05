@@ -4,12 +4,12 @@ import { MicrositeGallery } from '@/components/MicrositeGallery';
 import type { MicrositeGalleryCard } from '@/components/MicrositeGallery';
 import { ReportIssueButton } from '@/components/ReportIssueButton';
 import { fetchJoblessSeries } from '@/lib/jobless-data';
-import { categorySlugFor, MICROSITES } from '@/lib/microsites';
+import { categorySlugFor, SHOWN_MICROSITES } from '@/lib/microsites';
 import type { MicrositeConfig } from '@/lib/microsites';
 import { formatPercent } from '@/lib/us-format';
 
 function getMicrosite(slug: string): MicrositeConfig | undefined {
-  return MICROSITES.find((candidate) => candidate.slug === slug);
+  return SHOWN_MICROSITES.find((candidate) => candidate.slug === slug);
 }
 
 export default async function HomePage(): Promise<React.ReactElement> {
@@ -34,7 +34,7 @@ export default async function HomePage(): Promise<React.ReactElement> {
     ]),
   );
   // The full microsite list is in ship order (oldest first); show the newest first.
-  const galleryCards: MicrositeGalleryCard[] = [...MICROSITES].reverse().map((config) => {
+  const galleryCards: MicrositeGalleryCard[] = [...SHOWN_MICROSITES].reverse().map((config) => {
     const stat = statBySlug.get(config.slug);
     return {
       slug: config.slug,

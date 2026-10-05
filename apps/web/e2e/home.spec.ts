@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 
-import { MICROSITES } from '../src/lib/microsites';
+import { SHOWN_MICROSITES } from '../src/lib/microsites';
 
 test.describe('home', () => {
   test('@critical renders the landing page with microsite cards', async ({ page }) => {
@@ -10,7 +10,7 @@ test.describe('home', () => {
     await page.goto('./');
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     // One card per published microsite, named after that story's own title.
-    for (const microsite of MICROSITES) {
+    for (const microsite of SHOWN_MICROSITES) {
       await expect(page.getByRole('link', { name: microsite.title })).toHaveCount(1);
     }
   });
