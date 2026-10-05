@@ -2,8 +2,14 @@ import { renderToReadableStream } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 
 import { CATEGORY_SLUGS, MICROSITES } from '@/lib/microsites';
+import { PUBLISHED_MICROSITES } from '@/lib/published-microsites';
 
 import MicrositePage, { generateMetadata } from './page';
+
+/** True when this story is the one the site publishes right now. */
+function isPublished(slug: string): boolean {
+  return PUBLISHED_MICROSITES.includes(slug);
+}
 
 /** Builds the category/slug params for a microsite, or a miss for unknown slugs. */
 function paramsFor(slug: string): { category: string; slug: string } {
@@ -431,35 +437,41 @@ vi.mock('@/lib/peak-streamflow-data', async (importOriginal) => {
 });
 
 describe('MicrositePage', () => {
-  it('renders the fda-food-recalls story with its chart, stat cards, and sources', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('fda-food-recalls'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('Class I covers 44 percent of the 29,463 food recalls');
-    expect(html).toContain('href="/agriculture"');
-    expect(html).toContain('29,463');
-    expect(html).toContain('Busiest year, 2017');
-    expect(html).toContain('12,965');
-    expect(html).toContain('openFDA food enforcement reports, one record per recall (FDA)');
-    expect(html).toContain('aria-label="Breadcrumb"');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('fda-food-recalls'))(
+    'renders the fda-food-recalls story with its chart, stat cards, and sources',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('fda-food-recalls'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('Class I covers 44 percent of the 29,463 food recalls');
+      expect(html).toContain('href="/agriculture"');
+      expect(html).toContain('29,463');
+      expect(html).toContain('Busiest year, 2017');
+      expect(html).toContain('12,965');
+      expect(html).toContain('openFDA food enforcement reports, one record per recall (FDA)');
+      expect(html).toContain('aria-label="Breadcrumb"');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('returns a unique document title for the fda-food-recalls microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('fda-food-recalls')) }),
-    ).resolves.toEqual({
-      title: 'FDA food recalls - usa-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('fda-food-recalls'))(
+    'returns a unique document title for the fda-food-recalls microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('fda-food-recalls')) }),
+      ).resolves.toEqual({
         title: 'FDA food recalls - usa-open-data-lab',
         description: expect.any(String),
-        url: '/agriculture/fda-food-recalls/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'FDA food recalls - usa-open-data-lab',
+          description: expect.any(String),
+          url: '/agriculture/fda-food-recalls/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
   it('renders the jobless-rate story with narrative, chart, and sources', async () => {
     const stream = await renderToReadableStream(
@@ -518,7 +530,7 @@ describe('MicrositePage', () => {
     });
   });
 
-  it('returns a generic title for an unknown microsite', async () => {
+  it.skipIf(!isPublished('nope'))('returns a generic title for an unknown microsite', async () => {
     await expect(generateMetadata({ params: Promise.resolve(paramsFor('nope')) })).resolves.toEqual(
       {
         title: 'usa-open-data-lab',
@@ -526,292 +538,352 @@ describe('MicrositePage', () => {
     );
   });
 
-  it('renders the hawaii-quakes story with its chart, stat cards, and sources', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('hawaii-quakes'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('two thirds were below magnitude 3');
-    expect(html).toContain('href="/environment"');
-    expect(html).toContain('264');
-    expect(html).toContain('M4.41');
-    expect(html).toContain('Strongest, 15 Mar 2025');
-    expect(html).toContain('USGS earthquake catalogue, FDSN event query');
-    expect(html).toContain('aria-label="Breadcrumb"');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('hawaii-quakes'))(
+    'renders the hawaii-quakes story with its chart, stat cards, and sources',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('hawaii-quakes'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('two thirds were below magnitude 3');
+      expect(html).toContain('href="/environment"');
+      expect(html).toContain('264');
+      expect(html).toContain('M4.41');
+      expect(html).toContain('Strongest, 15 Mar 2025');
+      expect(html).toContain('USGS earthquake catalogue, FDSN event query');
+      expect(html).toContain('aria-label="Breadcrumb"');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('returns a unique document title for the hawaii-quakes microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('hawaii-quakes')) }),
-    ).resolves.toEqual({
-      title: 'Hawaii earthquakes - usa-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('hawaii-quakes'))(
+    'returns a unique document title for the hawaii-quakes microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('hawaii-quakes')) }),
+      ).resolves.toEqual({
         title: 'Hawaii earthquakes - usa-open-data-lab',
         description: expect.any(String),
-        url: '/environment/hawaii-quakes/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'Hawaii earthquakes - usa-open-data-lab',
+          description: expect.any(String),
+          url: '/environment/hawaii-quakes/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
-  it('renders the cdc-county-obesity story with its chart, stat cards, and sources', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('cdc-county-obesity'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('runs from 16.7 percent to 52.9 percent');
-    expect(html).toContain('href="/health"');
-    expect(html).toContain('2,956');
-    expect(html).toContain('37.9%');
-    expect(html).toContain('Counties above 32.8%');
-    expect(html).toContain('PLACES: Local Data for Better Health, county data, 2025 release (CDC)');
-    expect(html).toContain('aria-label="Breadcrumb"');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('cdc-county-obesity'))(
+    'renders the cdc-county-obesity story with its chart, stat cards, and sources',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('cdc-county-obesity'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('runs from 16.7 percent to 52.9 percent');
+      expect(html).toContain('href="/health"');
+      expect(html).toContain('2,956');
+      expect(html).toContain('37.9%');
+      expect(html).toContain('Counties above 32.8%');
+      expect(html).toContain(
+        'PLACES: Local Data for Better Health, county data, 2025 release (CDC)',
+      );
+      expect(html).toContain('aria-label="Breadcrumb"');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('returns a unique document title for the cdc-county-obesity microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('cdc-county-obesity')) }),
-    ).resolves.toEqual({
-      title: 'County obesity - usa-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('cdc-county-obesity'))(
+    'returns a unique document title for the cdc-county-obesity microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('cdc-county-obesity')) }),
+      ).resolves.toEqual({
         title: 'County obesity - usa-open-data-lab',
         description: expect.any(String),
-        url: '/health/cdc-county-obesity/',
-        type: 'article',
-      },
-    });
-  });
-  it('renders the us-temperature-record story with its chart, stat cards, and sources', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('us-temperature-record'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('Every year since 2000 has run warmer than the 20th century average');
-    expect(html).toContain('href="/energy"');
-    expect(html).toContain('55.48 °F');
-    expect(html).toContain('+2.61 °F');
-    expect(html).toContain('26 of 26');
-    expect(html).toContain('Climate at a Glance (NOAA NCEI)');
-    expect(html).toContain('aria-label="Breadcrumb"');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+        openGraph: {
+          title: 'County obesity - usa-open-data-lab',
+          description: expect.any(String),
+          url: '/health/cdc-county-obesity/',
+          type: 'article',
+        },
+      });
+    },
+  );
+  it.skipIf(!isPublished('us-temperature-record'))(
+    'renders the us-temperature-record story with its chart, stat cards, and sources',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('us-temperature-record'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('Every year since 2000 has run warmer than the 20th century average');
+      expect(html).toContain('href="/energy"');
+      expect(html).toContain('55.48 °F');
+      expect(html).toContain('+2.61 °F');
+      expect(html).toContain('26 of 26');
+      expect(html).toContain('Climate at a Glance (NOAA NCEI)');
+      expect(html).toContain('aria-label="Breadcrumb"');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('returns a unique document title for the us-temperature-record microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('us-temperature-record')) }),
-    ).resolves.toEqual({
-      title: 'US temperature record - usa-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('us-temperature-record'))(
+    'returns a unique document title for the us-temperature-record microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('us-temperature-record')) }),
+      ).resolves.toEqual({
         title: 'US temperature record - usa-open-data-lab',
         description: expect.any(String),
-        url: '/energy/us-temperature-record/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'US temperature record - usa-open-data-lab',
+          description: expect.any(String),
+          url: '/energy/us-temperature-record/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
-  it('renders the battery-sea-level story with its chart, stat cards, and sources', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('battery-sea-level'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('has risen 19 inches since 1856');
-    expect(html).toContain('href="/environment"');
-    expect(html).toContain('+0.48 m');
-    expect(html).toContain('+0.12 m');
-    expect(html).toContain('2.95 mm a year');
-    expect(html).toContain('Tides and Currents station 8518750, The Battery (NOAA CO-OPS)');
-    expect(html).toContain('aria-label="Breadcrumb"');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('battery-sea-level'))(
+    'renders the battery-sea-level story with its chart, stat cards, and sources',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('battery-sea-level'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('has risen 19 inches since 1856');
+      expect(html).toContain('href="/environment"');
+      expect(html).toContain('+0.48 m');
+      expect(html).toContain('+0.12 m');
+      expect(html).toContain('2.95 mm a year');
+      expect(html).toContain('Tides and Currents station 8518750, The Battery (NOAA CO-OPS)');
+      expect(html).toContain('aria-label="Breadcrumb"');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('returns a unique document title for the battery-sea-level microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('battery-sea-level')) }),
-    ).resolves.toEqual({
-      title: 'Battery sea level - usa-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('battery-sea-level'))(
+    'returns a unique document title for the battery-sea-level microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('battery-sea-level')) }),
+      ).resolves.toEqual({
         title: 'Battery sea level - usa-open-data-lab',
         description: expect.any(String),
-        url: '/environment/battery-sea-level/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'Battery sea level - usa-open-data-lab',
+          description: expect.any(String),
+          url: '/environment/battery-sea-level/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
-  it('renders the treasury-interest-rate story with its chart, stat cards, and sources', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('treasury-interest-rate'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('fell to 1.56 percent in 2022 and has climbed since');
-    expect(html).toContain('href="/economy"');
-    expect(html).toContain('Rate in Aug 2026');
-    expect(html).toContain('3.49%');
-    expect(html).toContain('1.56%');
-    expect(html).toContain('+1.9 pts');
-    expect(html).toContain(
-      'Average Interest Rates on U.S. Treasury Securities (US Treasury Fiscal Data)',
-    );
-    expect(html).toContain('aria-label="Breadcrumb"');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('treasury-interest-rate'))(
+    'renders the treasury-interest-rate story with its chart, stat cards, and sources',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('treasury-interest-rate'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('fell to 1.56 percent in 2022 and has climbed since');
+      expect(html).toContain('href="/economy"');
+      expect(html).toContain('Rate in Aug 2026');
+      expect(html).toContain('3.49%');
+      expect(html).toContain('1.56%');
+      expect(html).toContain('+1.9 pts');
+      expect(html).toContain(
+        'Average Interest Rates on U.S. Treasury Securities (US Treasury Fiscal Data)',
+      );
+      expect(html).toContain('aria-label="Breadcrumb"');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('renders the fema-disaster-declarations story with its chart, stat cards, and sources', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('fema-disaster-declarations'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain('Fire is the most common hazard in FEMA&#x27;s disaster declarations');
-    expect(html).toContain('href="/society"');
-    expect(html).toContain('5,272');
-    expect(html).toContain('Busiest year, 2020');
-    expect(html).toContain('1,785');
-    expect(html).toContain(
-      'Fema Web Disaster Declarations, one row per declaration (FEMA OpenFEMA)',
-    );
-    expect(html).toContain('aria-label="Breadcrumb"');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('fema-disaster-declarations'))(
+    'renders the fema-disaster-declarations story with its chart, stat cards, and sources',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('fema-disaster-declarations'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain('Fire is the most common hazard in FEMA&#x27;s disaster declarations');
+      expect(html).toContain('href="/society"');
+      expect(html).toContain('5,272');
+      expect(html).toContain('Busiest year, 2020');
+      expect(html).toContain('1,785');
+      expect(html).toContain(
+        'Fema Web Disaster Declarations, one row per declaration (FEMA OpenFEMA)',
+      );
+      expect(html).toContain('aria-label="Breadcrumb"');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('returns a unique document title for the fema-disaster-declarations microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('fema-disaster-declarations')) }),
-    ).resolves.toEqual({
-      title: 'FEMA declarations - usa-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('fema-disaster-declarations'))(
+    'returns a unique document title for the fema-disaster-declarations microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('fema-disaster-declarations')) }),
+      ).resolves.toEqual({
         title: 'FEMA declarations - usa-open-data-lab',
         description: expect.any(String),
-        url: '/society/fema-disaster-declarations/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'FEMA declarations - usa-open-data-lab',
+          description: expect.any(String),
+          url: '/society/fema-disaster-declarations/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
-  it('renders the mississippi-peak-flow story with its chart, stat cards, and sources', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('mississippi-peak-flow'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain(
-      'The Mississippi at St. Louis peaked at 1.08 million cubic feet per second in 1993.',
-    );
-    expect(html).toContain('href="/environment"');
-    expect(html).toContain('Record peak, 1 August 1993');
-    expect(html).toContain('1,080,000 cfs');
-    expect(html).toContain('5 of 165');
-    expect(html).toContain('Peak-flow record and station details, Mississippi River at St. Louis');
-    expect(html).toContain('aria-label="Breadcrumb"');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('mississippi-peak-flow'))(
+    'renders the mississippi-peak-flow story with its chart, stat cards, and sources',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('mississippi-peak-flow'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain(
+        'The Mississippi at St. Louis peaked at 1.08 million cubic feet per second in 1993.',
+      );
+      expect(html).toContain('href="/environment"');
+      expect(html).toContain('Record peak, 1 August 1993');
+      expect(html).toContain('1,080,000 cfs');
+      expect(html).toContain('5 of 165');
+      expect(html).toContain(
+        'Peak-flow record and station details, Mississippi River at St. Louis',
+      );
+      expect(html).toContain('aria-label="Breadcrumb"');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('renders the cpsc-product-recalls story with its chart, stat cards, and sources', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('cpsc-product-recalls'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain(
-      '459 consumer product recalls so far in 2026, more than any full year since 2014.',
-    );
-    expect(html).toContain('href="/society"');
-    expect(html).toContain('Recalls since 2014');
-    expect(html).toContain('3,986');
-    expect(html).toContain('459');
-    expect(html).toContain('Recalls naming China');
-    expect(html).toContain('2,312');
-    expect(html).toContain('Remedy options');
-    expect(html).toContain('1,980');
-    expect(html).toContain('SaferProducts.gov recall service, the endpoint this site reads (CPSC)');
-    expect(html).toContain('aria-label="Breadcrumb"');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('cpsc-product-recalls'))(
+    'renders the cpsc-product-recalls story with its chart, stat cards, and sources',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('cpsc-product-recalls'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain(
+        '459 consumer product recalls so far in 2026, more than any full year since 2014.',
+      );
+      expect(html).toContain('href="/society"');
+      expect(html).toContain('Recalls since 2014');
+      expect(html).toContain('3,986');
+      expect(html).toContain('459');
+      expect(html).toContain('Recalls naming China');
+      expect(html).toContain('2,312');
+      expect(html).toContain('Remedy options');
+      expect(html).toContain('1,980');
+      expect(html).toContain(
+        'SaferProducts.gov recall service, the endpoint this site reads (CPSC)',
+      );
+      expect(html).toContain('aria-label="Breadcrumb"');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('returns a unique document title for the cpsc-product-recalls microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('cpsc-product-recalls')) }),
-    ).resolves.toEqual({
-      title: 'Product recalls - usa-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('cpsc-product-recalls'))(
+    'returns a unique document title for the cpsc-product-recalls microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('cpsc-product-recalls')) }),
+      ).resolves.toEqual({
         title: 'Product recalls - usa-open-data-lab',
         description: expect.any(String),
-        url: '/society/cpsc-product-recalls/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'Product recalls - usa-open-data-lab',
+          description: expect.any(String),
+          url: '/society/cpsc-product-recalls/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
-  it('renders the cfpb-consumer-complaints story with its chart, stat cards, and sources', async () => {
-    const stream = await renderToReadableStream(
-      <MicrositePage params={Promise.resolve(paramsFor('cfpb-consumer-complaints'))} />,
-    );
-    const html = await new Response(stream).text();
-    expect(html).toContain(
-      'The CFPB counted 5.4 million consumer complaints in 2025, and 2026 passed that by October.',
-    );
-    expect(html).toContain('href="/economy"');
-    expect(html).toContain('Complaints in the file');
-    expect(html).toContain('18,145,013');
-    expect(html).toContain('2026 so far');
-    expect(html).toContain('5,462,631');
-    expect(html).toContain('Complaints naming the three bureaus');
-    expect(html).toContain('14,227,100');
-    expect(html).toContain('The companies named most often');
-    expect(html).toContain('TRANSUNION INTERMEDIATE HOLDINGS, INC.');
-    expect(html).toContain('The search API endpoint this site reads (CFPB)');
-    expect(html).toContain('aria-label="Breadcrumb"');
-    expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
-  });
+  it.skipIf(!isPublished('cfpb-consumer-complaints'))(
+    'renders the cfpb-consumer-complaints story with its chart, stat cards, and sources',
+    async () => {
+      const stream = await renderToReadableStream(
+        <MicrositePage params={Promise.resolve(paramsFor('cfpb-consumer-complaints'))} />,
+      );
+      const html = await new Response(stream).text();
+      expect(html).toContain(
+        'The CFPB counted 5.4 million consumer complaints in 2025, and 2026 passed that by October.',
+      );
+      expect(html).toContain('href="/economy"');
+      expect(html).toContain('Complaints in the file');
+      expect(html).toContain('18,145,013');
+      expect(html).toContain('2026 so far');
+      expect(html).toContain('5,462,631');
+      expect(html).toContain('Complaints naming the three bureaus');
+      expect(html).toContain('14,227,100');
+      expect(html).toContain('The companies named most often');
+      expect(html).toContain('TRANSUNION INTERMEDIATE HOLDINGS, INC.');
+      expect(html).toContain('The search API endpoint this site reads (CFPB)');
+      expect(html).toContain('aria-label="Breadcrumb"');
+      expect(html.match(/<h1[^>]*>/g) ?? []).toHaveLength(1);
+    },
+  );
 
-  it('returns a unique document title for the cfpb-consumer-complaints microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('cfpb-consumer-complaints')) }),
-    ).resolves.toEqual({
-      title: 'Consumer complaints - usa-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('cfpb-consumer-complaints'))(
+    'returns a unique document title for the cfpb-consumer-complaints microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('cfpb-consumer-complaints')) }),
+      ).resolves.toEqual({
         title: 'Consumer complaints - usa-open-data-lab',
         description: expect.any(String),
-        url: '/economy/cfpb-consumer-complaints/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'Consumer complaints - usa-open-data-lab',
+          description: expect.any(String),
+          url: '/economy/cfpb-consumer-complaints/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
-  it('returns a unique document title for the mississippi-peak-flow microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('mississippi-peak-flow')) }),
-    ).resolves.toEqual({
-      title: 'Mississippi peak flow - usa-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('mississippi-peak-flow'))(
+    'returns a unique document title for the mississippi-peak-flow microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('mississippi-peak-flow')) }),
+      ).resolves.toEqual({
         title: 'Mississippi peak flow - usa-open-data-lab',
         description: expect.any(String),
-        url: '/environment/mississippi-peak-flow/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'Mississippi peak flow - usa-open-data-lab',
+          description: expect.any(String),
+          url: '/environment/mississippi-peak-flow/',
+          type: 'article',
+        },
+      });
+    },
+  );
 
-  it('returns a unique document title for the treasury-interest-rate microsite', async () => {
-    await expect(
-      generateMetadata({ params: Promise.resolve(paramsFor('treasury-interest-rate')) }),
-    ).resolves.toEqual({
-      title: 'Treasury interest rate - usa-open-data-lab',
-      description: expect.any(String),
-      openGraph: {
+  it.skipIf(!isPublished('treasury-interest-rate'))(
+    'returns a unique document title for the treasury-interest-rate microsite',
+    async () => {
+      await expect(
+        generateMetadata({ params: Promise.resolve(paramsFor('treasury-interest-rate')) }),
+      ).resolves.toEqual({
         title: 'Treasury interest rate - usa-open-data-lab',
         description: expect.any(String),
-        url: '/economy/treasury-interest-rate/',
-        type: 'article',
-      },
-    });
-  });
+        openGraph: {
+          title: 'Treasury interest rate - usa-open-data-lab',
+          description: expect.any(String),
+          url: '/economy/treasury-interest-rate/',
+          type: 'article',
+        },
+      });
+    },
+  );
 });

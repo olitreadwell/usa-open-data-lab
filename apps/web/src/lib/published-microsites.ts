@@ -2,16 +2,4 @@
  * Microsites published to the public site, one at a time.
  * Add a slug here when an experiment ships.
  */
-export const PUBLISHED_MICROSITES: readonly string[] = [
-  'jobless-rate',
-  'hawaii-quakes',
-  'cdc-county-obesity',
-  'us-temperature-record',
-  'battery-sea-level',
-  'treasury-interest-rate',
-  'fema-disaster-declarations',
-  'fda-food-recalls',
-  'mississippi-peak-flow',
-  'cpsc-product-recalls',
-  'cfpb-consumer-complaints',
-];
+export const PUBLISHED_MICROSITES: readonly string[] = ['jobless-rate'];

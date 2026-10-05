@@ -5,17 +5,18 @@ A map of this repo for anyone (or any agent) arriving cold.
 ## The site
 
 `usa-open-data-lab` is a static Next.js export of small experiments on US public
-data. Three microsites are published. The home page is
+data. One microsite is published at a time, listed in
+`apps/web/src/lib/published-microsites.ts`. The home page is
 (`apps/web/src/app/page.tsx`), and each story lives at
 `/<category-slug>/<slug>/`.
 
 - [jobless-rate](docs/experiments/jobless-rate) (alive) The national
   unemployment rate month by month over the last twenty years, from the
   Bureau of Labor Statistics public data API.
-- [hawaii-quakes](docs/experiments/hawaii-quakes) (alive) One year of
+- [hawaii-quakes](docs/experiments/hawaii-quakes) (built, not published) One year of
   earthquakes near the Hawaiian islands, counted into half-magnitude bands,
   from the USGS earthquake catalogue.
-- [cdc-county-obesity](docs/experiments/cdc-county-obesity) (alive) The share
+- [cdc-county-obesity](docs/experiments/cdc-county-obesity) (built, not published) The share
   of adults with obesity in 2,956 US counties, from the CDC PLACES county
   release.
 

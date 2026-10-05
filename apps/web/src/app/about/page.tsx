@@ -35,14 +35,14 @@ export default function AboutPage(): React.ReactElement {
         </section>
 
         <section className="space-y-3">
-          <h2 className="numeral-heading-lg">US open data</h2>
+          <h2 className="numeral-heading-lg">Awesome US Open Data</h2>
           <p className="numeral-paragraph-md">
             Sources start in{' '}
             <Link
-              href="https://github.com/olitreadwell/awesome-open-usa-data"
+              href="https://github.com/olitreadwell/awesome-usa-open-data"
               className="underline hover:text-[var(--color-fg)]"
             >
-              awesome-open-usa-data
+              awesome-usa-open-data
             </Link>
             , a curated list of US open data and the APIs that serve it, from federal agencies to
             state and city portals.

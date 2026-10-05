@@ -18,9 +18,9 @@ describe('AboutPage', () => {
       'href',
       'https://github.com/olitreadwell/usa-open-data-connectors',
     );
-    expect(screen.getByRole('link', { name: 'awesome-open-usa-data' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: 'awesome-usa-open-data' })).toHaveAttribute(
       'href',
-      'https://github.com/olitreadwell/awesome-open-usa-data',
+      'https://github.com/olitreadwell/awesome-usa-open-data',
     );
     expect(screen.getByRole('link', { name: 'GitHub' })).toHaveAttribute(
       'href',
